@@ -43,7 +43,7 @@
 		                <connectedAppClientId>${conn.app.client.id}</connectedAppClientId>
 		                <connectedAppClientSecret>${conn.app.client.secret}</connectedAppClientSecret>
 		                <connectedAppGrantType>client_credentials</connectedAppGrantType>
-						<applicationName>${project.artifactId}-${project.version}</applicationName>
+						<applicationName>${project.artifactId}</applicationName>
 						<environment>${cloudhub.environment}</environment>
 						<workerType>${cloudhub.workerType}</workerType>
 						<workers>${cloudhub.workers}</workers>
