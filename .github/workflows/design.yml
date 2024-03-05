@@ -1,0 +1,12 @@
+name: design_ci_cd_pipeline
+on: workflow_dispatch
+
+jobs:
+    sandbox:
+        uses: ./.github/workflows/reusable.yml
+        with: 
+            GITHUB_ENV: "design"
+            CLOUDHUB_ENVIRONMENT: "Design" 
+            CLOUDHUB_REGION: "us-east-2"
+            CLOUDHUB_ID: ${{ secrets.CLOUDHUB_ID }}
+            CLOUDHUB_SECRET: ${{ secrets.CLOUDHUB_SECRET }}
