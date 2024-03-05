@@ -11,7 +11,7 @@ jobs:
         if: github.event.inputs.mule-env == 'sandbox'
         environment: sandbox
         env: 
-            CLOUDHUB_ENVIRONMENT: "sandbox" 
+            CLOUDHUB_ENVIRONMENT: "Sandbox" 
             CLOUDHUB_WORKERS: "1"
             CLOUDHUB_WORKER_TYPE: "MICRO"
             CLOUDHUB_REGION: "us-east-2"
