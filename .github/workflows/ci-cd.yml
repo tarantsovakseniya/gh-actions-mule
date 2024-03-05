@@ -1,0 +1,21 @@
+name: Full lifecycle for Mule app
+on: 
+    workflow_dispatch:
+        inputs:
+            mule-env:
+                description: Mulesoft environment to deploy
+                required: true
+                default: 'sandbox'
+jobs:
+    sandbox:
+        if: github.event.inputs.mule-env == 'sandbox'
+        runs-on: ubuntu-latest
+        steps:
+            - name: Dump GitHub context
+              run: echo "$GITHUB_CONTEXT"
+            - name: Get event ref
+              run:  echo ${{ github.event.ref}}     
+            - name: Get the code
+              uses: actions/checkout@v4
+
+
