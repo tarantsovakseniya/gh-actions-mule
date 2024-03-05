@@ -8,5 +8,6 @@ jobs:
             GITHUB_ENV: "sandbox"
             CLOUDHUB_ENVIRONMENT: "Sandbox" 
             CLOUDHUB_REGION: "us-east-2"
+        secrets:
             CLOUDHUB_ID: ${{ secrets.CLOUDHUB_ID }}
             CLOUDHUB_SECRET: ${{ secrets.CLOUDHUB_SECRET }}
