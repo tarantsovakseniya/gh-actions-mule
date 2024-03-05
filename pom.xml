@@ -32,6 +32,30 @@
 				<version>3.2.0</version>
 			</plugin>
 			<plugin>
+			    <groupId>org.codehaus.mojo</groupId>
+			    <artifactId>build-helper-maven-plugin</artifactId>
+			    <version>3.0.0</version>
+			    <executions>
+			     <execution>
+			      <id>appname-lowercase-variable</id>
+			      <phase>initialize</phase>
+			      <goals>
+			       <goal>regex-property</goal>
+			      </goals>
+			      <configuration>
+			       <name>${cloudhub.environment}-${project.artifactId}</name>
+			       <value>${appName}</value>
+			       <regex>${appName}</regex>
+			       <replacement>${appName}</replacement>
+			       <toLowerCase>true</toLowerCase>
+			       <failIfNoMatch>false</failIfNoMatch>
+			       <fileSet/>
+			       <source/>
+			      </configuration>
+			     </execution>
+			    </executions>
+			   </plugin>
+			<plugin>
 				<groupId>org.mule.tools.maven</groupId>
 				<artifactId>mule-maven-plugin</artifactId>
 				<version>${mule.maven.plugin.version}</version>
@@ -43,7 +67,7 @@
 		                <connectedAppClientId>${conn.app.client.id}</connectedAppClientId>
 		                <connectedAppClientSecret>${conn.app.client.secret}</connectedAppClientSecret>
 		                <connectedAppGrantType>client_credentials</connectedAppGrantType>
-						<applicationName>${cloudhub.environment}-${project.artifactId}-${project.version}</applicationName>
+						<applicationName>${appName.lower}-${project.version}</applicationName>
 						<environment>${cloudhub.environment}</environment>
 						<workerType>${cloudhub.workerType}</workerType>
 						<workers>${cloudhub.workers}</workers>
