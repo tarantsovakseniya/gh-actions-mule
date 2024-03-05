@@ -21,13 +21,13 @@ jobs:
               uses: actions/checkout@v4
             - name: Set Version
               id: set-version
-              run: echo version=$(./mvnw -q -Dexec.executable=echo -Dexec.args='${project.version}' --non-recursive exec:exec) >> $GITHUB_OUTPUT     
+              run: echo version=$(mvn -q -Dexec.executable=echo -Dexec.args='${project.version}' --non-recursive exec:exec) >> $GITHUB_OUTPUT     
             - name: Print Version
               run: echo "Version ${{ steps.set-version.outputs.version }}"
             - name: Set up JDK 8
               uses: actions/setup-java@v4
               with:
-                distribution: 'adopt'
+                distribution: 'adopt-hotspot'
                 java-version: '8'
                 cache: 'maven'
             - name: Test the compiled source code
