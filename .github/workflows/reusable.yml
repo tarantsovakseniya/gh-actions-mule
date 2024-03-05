@@ -6,7 +6,7 @@ on:
                 description: Environment name to deploy api to CH
                 required: true
                 type: string
-            GITHUB_ENVIRONMENT:
+            GITHUB_ENV:
                 description: Environment name to fetch the secrets from GitHub
                 required: true
                 type: string                    
