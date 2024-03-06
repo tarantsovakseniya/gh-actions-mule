@@ -4,26 +4,20 @@ inputs:
     CLOUDHUB_ENVIRONMENT:
         description: Environment name to deploy api to CH
         required: true
-        type: string
     GITHUB_ENV:
         description: Environment name to fetch the secrets from GitHub
-        required: true
-        type: string                    
+        required: true                  
     CLOUDHUB_WORKERS:
         description: Number of dedicated instances
         required: false
         default: '1'
-        type: string
     CLOUDHUB_WORKER_TYPE:
         description: Size of the worker
         required: false
-        default: 'MICRO'
-        type: string                
+        default: 'MICRO'            
     CLOUDHUB_REGION:
         description: Region of worker clouds
-        required: true
-        type: string                                   
-secrets:
+        required: true                                 
     CLOUDHUB_ID:
         description: Connected App ID
         required: true  
@@ -33,8 +27,6 @@ secrets:
 
 runs:
     using: 'composite'
-    environment: ${{ inputs.GITHUB_ENV }}
-    runs-on: ubuntu-latest
     steps:
         # Information about the workflow run (context).
         - name: Get GitHub object
@@ -70,8 +62,8 @@ runs:
         - name: Deploy             
           run: |
             mvn -U -V -e -B -DskipTests deploy --file pom.xml -DmuleDeploy \
-            -Dconn.app.client.id=${{ secrets.CLOUDHUB_ID}} \
-            -Dconn.app.client.secret=${{ secrets.CLOUDHUB_SECRET}} \
+            -Dconn.app.client.id=${{ inputs.CLOUDHUB_ID}} \
+            -Dconn.app.client.secret=${{ inputs.CLOUDHUB_SECRET}} \
             -Dcloudhub.environment=${{ inputs.CLOUDHUB_ENVIRONMENT}} \
             -Dcloudhub.workerType=${{ inputs.CLOUDHUB_WORKER_TYPE}} \
             -Dcloudhub.workers=${{ inputs.CLOUDHUB_WORKERS}} \
