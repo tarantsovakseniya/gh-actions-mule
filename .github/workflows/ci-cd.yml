@@ -65,12 +65,6 @@ jobs:
                 -Dcloudhub.workers=${{ env.CLOUDHUB_WORKERS}} \
                 -Dcloudhub.region=${{ env.CLOUDHUB_REGION}} \
 
-            - name: Publish package
-              run: mvn --batch-mode deploy
-              env:
-                JF_USERNAME: ${{ secrets.JF_USERNAME }}
-                JF_PASSWORD: ${{ secrets.JF_PASSWORD }}             
-
             # Configure user for the next step
             - name: Configure Git user
               run: |
@@ -80,8 +74,23 @@ jobs:
             # Replace the snapshot version with a release candidate version.
             # Deploy the jar to GitHub registry
             # Build next snapshot version.
-            - name: Prepare release and perform
+            - name: Prepare release
               continue-on-error: true
-              run: mvn -B release:prepare release:perform
+              run: mvn -B release:prepare
+              env:
+                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+            - name: Publish package
+              run: mvn --batch-mode deploy
+              env:
+                JF_USERNAME: ${{ secrets.JF_USERNAME }}
+                JF_PASSWORD: ${{ secrets.JF_PASSWORD }}         
+
+            # Replace the snapshot version with a release candidate version.
+            # Deploy the jar to GitHub registry
+            # Build next snapshot version.
+            - name: Perform release
+              continue-on-error: true
+              run: mvn -B release:perform
               env:
                 GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
