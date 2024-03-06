@@ -60,7 +60,14 @@ jobs:
                 -Dcloudhub.workerType=${{ env.CLOUDHUB_WORKER_TYPE}} \
                 -Dcloudhub.workers=${{ env.CLOUDHUB_WORKERS}} \
                 -Dcloudhub.region=${{ env.CLOUDHUB_REGION}} \
-            - name: prepare release and perform
+
+            # Add email these reports, zip - TBD
+                
+            - name: Configure Git user
+              run: |
+                git config user.email "actions@github.com"
+                git config user.name "GitHub Actions"
+            - name: Prepare release and perform
               continue-on-error: true
               run: mvn -B release:prepare release:perform
               env:
