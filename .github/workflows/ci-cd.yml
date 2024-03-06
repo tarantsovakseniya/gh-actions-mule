@@ -75,8 +75,9 @@ jobs:
             # Deploy the jar to GitHub registry
             # Build next snapshot version.
             - name: Prepare release
+              
               continue-on-error: true
-              run: mvn -B release:prepare
+              run: mvn -B release:prepare -DupdateWorkingCopyVersions=false
               env:
                 GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
