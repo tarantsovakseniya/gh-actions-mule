@@ -1,0 +1,29 @@
+name: ci_cd_pipeline_with_composite_action
+on: 
+    workflow_dispatch:
+        inputs:
+            mule-env:
+                description: Mulesoft environment to deploy
+                required: true
+                default: 'sandbox'
+jobs:
+    sandbox:
+        if: github.event.inputs.mule-env == 'sandbox'
+        uses: ./.github/actions/build
+        with: 
+            GITHUB_ENV: "sandbox"
+            CLOUDHUB_ENVIRONMENT: "Sandbox" 
+            CLOUDHUB_REGION: "us-east-2"
+        secrets:
+            CLOUDHUB_ID: ${{ secrets.CLOUDHUB_ID }}
+            CLOUDHUB_SECRET: ${{ secrets.CLOUDHUB_SECRET }}
+    design:
+        if: github.event.inputs.mule-env == 'design'
+        uses: ./.github/actions/build
+        with: 
+            GITHUB_ENV: "design"
+            CLOUDHUB_ENVIRONMENT: "Design" 
+            CLOUDHUB_REGION: "us-east-2"
+        secrets:
+            CLOUDHUB_ID: ${{ secrets.CLOUDHUB_ID }}
+            CLOUDHUB_SECRET: ${{ secrets.CLOUDHUB_SECRET }}       
