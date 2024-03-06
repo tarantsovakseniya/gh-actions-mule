@@ -54,32 +54,32 @@ jobs:
             - name: Build the jar
               run: mvn package -DskipTests   
 
-            # Deploy
-            - name: Deploy             
-              run: |
-                mvn -U -V -e -B -DskipTests deploy --file pom.xml -DmuleDeploy \
-                -Dconn.app.client.id=${{ env.CLOUDHUB_ID}} \
-                -Dconn.app.client.secret=${{ env.CLOUDHUB_SECRET}} \
-                -Dcloudhub.environment=${{ env.CLOUDHUB_ENVIRONMENT}} \
-                -Dcloudhub.workerType=${{ env.CLOUDHUB_WORKER_TYPE}} \
-                -Dcloudhub.workers=${{ env.CLOUDHUB_WORKERS}} \
-                -Dcloudhub.region=${{ env.CLOUDHUB_REGION}} \
+            # # Deploy
+            # - name: Deploy             
+            #   run: |
+            #     mvn -U -V -e -B -DskipTests deploy --file pom.xml -DmuleDeploy \
+            #     -Dconn.app.client.id=${{ env.CLOUDHUB_ID}} \
+            #     -Dconn.app.client.secret=${{ env.CLOUDHUB_SECRET}} \
+            #     -Dcloudhub.environment=${{ env.CLOUDHUB_ENVIRONMENT}} \
+            #     -Dcloudhub.workerType=${{ env.CLOUDHUB_WORKER_TYPE}} \
+            #     -Dcloudhub.workers=${{ env.CLOUDHUB_WORKERS}} \
+            #     -Dcloudhub.region=${{ env.CLOUDHUB_REGION}} \
 
-            # Configure user for the next step
-            - name: Configure Git user
-              run: |
-                git config user.email "actions@github.com"
-                git config user.name "GitHub Actions"
+            # # Configure user for the next step
+            # - name: Configure Git user
+            #   run: |
+            #     git config user.email "actions@github.com"
+            #     git config user.name "GitHub Actions"
 
             # Replace the snapshot version with a release candidate version.
             # Deploy the jar to GitHub registry
             # Build next snapshot version.
-            - name: Prepare release
+            # - name: Prepare release
               
-              continue-on-error: true
-              run: mvn -B release:prepare -DupdateWorkingCopyVersions=false
-              env:
-                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            #   continue-on-error: true
+            #   run: mvn -B release:prepare -DupdateWorkingCopyVersions=false
+            #   env:
+            #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
             - name: Publish package
               run: mvn --batch-mode deploy
@@ -90,8 +90,8 @@ jobs:
             # Replace the snapshot version with a release candidate version.
             # Deploy the jar to GitHub registry
             # Build next snapshot version.
-            - name: Perform release
-              continue-on-error: true
-              run: mvn -B release:perform
-              env:
-                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            # - name: Perform release
+            #   continue-on-error: true
+            #   run: mvn -B release:perform
+            #   env:
+            #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

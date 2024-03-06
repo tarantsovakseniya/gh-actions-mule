@@ -123,7 +123,7 @@
 		<repository>
 			<id>central</id>
 			<name>a0yank01y7nmu-artifactory-primary-0-releases</name>
-			<url>https://mule777.jfrog.io/artifactory/mule-k-libs-release</url>
+			<url>https://mule777.jfrog.io/artifactory/mule-k-libs-release-local</url>
 		</repository> 
 	</distributionManagement>
 
