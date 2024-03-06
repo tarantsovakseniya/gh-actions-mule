@@ -11,6 +11,8 @@ jobs:
         runs-on: ubuntu-latest
         if: github.event.inputs.mule-env == 'sandbox'
         steps:
+            - name: Get code
+              uses: actions/checkout@v3
             - name: Test, Build and Deploy
               uses: ./.github/actions/build
               with: 
@@ -23,6 +25,9 @@ jobs:
         runs-on: ubuntu-latest
         if: github.event.inputs.mule-env == 'design'
         steps:
+            # This action checks-out your repository under $GITHUB_WORKSPACE, so your workflow can access it.
+            - name: Get code
+              uses: actions/checkout@v3
             - name: Test, Build and Deploy
               uses: ./.github/actions/build
               with: 
