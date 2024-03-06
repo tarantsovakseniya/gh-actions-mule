@@ -57,3 +57,8 @@ jobs:
                 -Dcloudhub.workerType=${{ env.CLOUDHUB_WORKER_TYPE}} \
                 -Dcloudhub.workers=${{ env.CLOUDHUB_WORKERS}} \
                 -Dcloudhub.region=${{ env.CLOUDHUB_REGION}} \
+            - name: prepare release and perform
+              continue-on-error: true
+              run: mvn -B release:prepare release:perform
+              env:
+                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

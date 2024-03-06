@@ -7,7 +7,14 @@
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>mule-application</packaging>
 
-	<name>gh-actions-mule</name>
+	<name>${project.artifactId}</name>
+
+    <scm>
+		<connection>scm:git:https://github.com/tarantsovakseniya/gh-actions-mule.git</connection>
+		<url>scm:git:https://github.com/tarantsovakseniya/gh-actions-mule.git</url>
+    	<developerConnection>scm:git:https://github.com/tarantsovakseniya/gh-actions-mule.git</developerConnection>
+    	<tag>gh-actions-mule-1.0.0</tag>
+    </scm>	
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -16,6 +23,9 @@
 		<app.runtime>4.5.2</app.runtime>
 		<mule.maven.plugin.version>4.0.0</mule.maven.plugin.version>
 		<mule.version>4.5</mule.version>
+		<tags />
+		<categories>[]</categories>
+		<maven.release.plugin.version>3.0.4</maven.release.plugin.version>
 		<project.scm.id>github</project.scm.id>
 	</properties>
 
@@ -103,5 +113,13 @@
 			</snapshots>
 		</pluginRepository>
 	</pluginRepositories>
+	
+	<distributionManagement>
+		<repository>
+			<id>github</id>
+			<name>github</name>
+			<url>https://maven.pkg.github.com/tarantsovakseniya/gh-actions-mule</url>  
+		</repository>
+	</distributionManagement>
 
 </project>
