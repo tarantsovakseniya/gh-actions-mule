@@ -8,22 +8,26 @@ on:
                 default: 'sandbox'
 jobs:
     sandbox:
+        runs-on: ubuntu-latest
         if: github.event.inputs.mule-env == 'sandbox'
-        uses: ./.github/actions/build
-        with: 
-            GITHUB_ENV: "sandbox"
-            CLOUDHUB_ENVIRONMENT: "Sandbox" 
-            CLOUDHUB_REGION: "us-east-2"
-        secrets:
-            CLOUDHUB_ID: ${{ secrets.CLOUDHUB_ID }}
-            CLOUDHUB_SECRET: ${{ secrets.CLOUDHUB_SECRET }}
+        steps:
+            - name: Test, Build and Deploy
+              uses: ./.github/actions/build
+              with: 
+                GITHUB_ENV: "sandbox"
+                CLOUDHUB_ENVIRONMENT: "Sandbox" 
+                CLOUDHUB_REGION: "us-east-2"
+                CLOUDHUB_ID: ${{ secrets.CLOUDHUB_ID }}
+                CLOUDHUB_SECRET: ${{ secrets.CLOUDHUB_SECRET }}
     design:
+        runs-on: ubuntu-latest
         if: github.event.inputs.mule-env == 'design'
-        uses: ./.github/actions/build
-        with: 
-            GITHUB_ENV: "design"
-            CLOUDHUB_ENVIRONMENT: "Design" 
-            CLOUDHUB_REGION: "us-east-2"
-        secrets:
-            CLOUDHUB_ID: ${{ secrets.CLOUDHUB_ID }}
-            CLOUDHUB_SECRET: ${{ secrets.CLOUDHUB_SECRET }}       
+        steps:
+            - name: Test, Build and Deploy
+              uses: ./.github/actions/build
+              with: 
+                GITHUB_ENV: "design"
+                CLOUDHUB_ENVIRONMENT: "Design" 
+                CLOUDHUB_REGION: "us-east-2"
+                CLOUDHUB_ID: ${{ secrets.CLOUDHUB_ID }}
+                CLOUDHUB_SECRET: ${{ secrets.CLOUDHUB_SECRET }}       
