@@ -85,7 +85,7 @@ jobs:
             #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
             - name: Publish package
-              run: mvn -B release:perform
+              run: mvn -batch-mode deploy
               env:
                 JF_USERNAME: ${{ secrets.JF_USERNAME }}
                 JF_PASSWORD: ${{ secrets.JF_PASSWORD }}     
