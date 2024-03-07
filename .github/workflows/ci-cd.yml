@@ -74,24 +74,17 @@ jobs:
             # Replace the snapshot version with a release candidate version.
             # Deploy the jar to GitHub registry
             # Build next snapshot version.
-            # - name: Prepare release
-              
-            #   continue-on-error: true
-            #   run: mvn -B release:prepare -DupdateWorkingCopyVersions=false
-            #   env:
-            #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-            - name: Publish package
-              run: mvn --batch-mode deploy
+            - name: Prepare and perform release              
+              continue-on-error: true
+              id: release
+              run: mvn -B release:prepare release:perform
               env:
-                JF_USERNAME: ${{ secrets.JF_USERNAME }}
-                JF_PASSWORD: ${{ secrets.JF_PASSWORD }}         
+                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-            # Replace the snapshot version with a release candidate version.
-            # Deploy the jar to GitHub registry
-            # Build next snapshot version.
-            # - name: Perform release
-            #   continue-on-error: true
-            #   run: mvn -B release:perform
+            # - name: Publish package
+            #   run: mvn --batch-mode deploy
             #   env:
-            #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            #     JF_USERNAME: ${{ secrets.JF_USERNAME }}
+            #     JF_PASSWORD: ${{ secrets.JF_PASSWORD }}     
+            - name: Output print
+              run: echo ${{ steps.release.outputs }}    
