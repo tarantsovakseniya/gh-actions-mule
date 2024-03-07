@@ -42,7 +42,7 @@ jobs:
                 distribution: 'adopt-hotspot'
                 java-version: '8'
                 cache: 'maven'
-                server-id: central
+                server-id: central-releases
                 server-username: JF_USERNAME
                 server-password: JF_PASSWORD
 
