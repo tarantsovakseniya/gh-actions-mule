@@ -115,16 +115,16 @@
 	</pluginRepositories>
 	
 	<distributionManagement>
-<!-- 		<repository>
-			<id>github</id>
-			<name>github</name>
-			<url>https://maven.pkg.github.com/tarantsovakseniya/gh-actions-mule</url>  
-		</repository> -->
 		<repository>
-			<id>central</id>
+			<id>central-releases</id>
+			<name>a0yank01y7nmu-artifactory-primary-0-releases</name>
+			<url>https://mule777.jfrog.io/artifactory/mule-k-libs-release-local</url>
+		</repository>
+		<snapshotRepository>
+			<id>central-snapshots</id>
 			<name>a0yank01y7nmu-artifactory-primary-0-releases</name>
 			<url>https://mule777.jfrog.io/artifactory/mule-k-libs-snapshot-local</url>
-		</repository> 
+		</snapshotRepository> 
 	</distributionManagement>
 
 </project>

@@ -66,10 +66,10 @@ jobs:
             #     -Dcloudhub.region=${{ env.CLOUDHUB_REGION}} \
 
             # # Configure user for the next step
-            # - name: Configure Git user
-            #   run: |
-            #     git config user.email "actions@github.com"
-            #     git config user.name "GitHub Actions"
+            - name: Configure Git user
+              run: |
+                git config user.email "actions@github.com"
+                git config user.name "GitHub Actions"
 
             # Replace the snapshot version with a release candidate version.
             # Deploy the jar to GitHub registry
@@ -77,14 +77,19 @@ jobs:
             - name: Prepare and perform release              
               continue-on-error: true
               id: release
-              run: mvn -B release:prepare release:perform
+              run: mvn -B release:prepare
+
+            - name: Perform release
+              run: mvn -B release:perform
               env:
                 GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-            # - name: Publish package
-            #   run: mvn --batch-mode deploy
-            #   env:
-            #     JF_USERNAME: ${{ secrets.JF_USERNAME }}
-            #     JF_PASSWORD: ${{ secrets.JF_PASSWORD }}     
+            - name: Publish package
+              run: mvn -B release:perform
+              env:
+                JF_USERNAME: ${{ secrets.JF_USERNAME }}
+                JF_PASSWORD: ${{ secrets.JF_PASSWORD }}     
             - name: Output print
-              run: echo ${{ steps.release.outputs }}    
+              run: |
+                echo ${{ toJSON(steps.release.outputs) }}    
+                echo ${{ toJSON(github) }}
