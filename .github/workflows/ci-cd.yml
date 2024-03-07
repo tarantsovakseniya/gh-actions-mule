@@ -26,14 +26,14 @@ jobs:
             - name: Get the code
               uses: actions/checkout@v4
 
-            # Set version variable
-            - name: Set Version
-              id: set-version
-              run: echo version=$(mvn org.apache.maven.plugins:maven-help-plugin:3.2.0:evaluate -Dexpression=project.version -q -DforceStdout) >> $GITHUB_OUTPUT     
+            # # Set version variable
+            # - name: Set Version
+            #   id: set-version
+            #   run: echo version=$(mvn org.apache.maven.plugins:maven-help-plugin:3.2.0:evaluate -Dexpression=project.version -q -DforceStdout) >> $GITHUB_OUTPUT     
             
-              # Print version variable
-            - name: Print Version
-              run: echo "Version ${{ steps.set-version.outputs.version }}"
+            #   # Print version variable
+            # - name: Print Version
+            #   run: echo "Version ${{ steps.set-version.outputs.version }}"
 
             # Set up Java
             - name: Set up JDK 8
@@ -65,11 +65,11 @@ jobs:
             #     -Dcloudhub.workers=${{ env.CLOUDHUB_WORKERS}} \
             #     -Dcloudhub.region=${{ env.CLOUDHUB_REGION}} \
 
-            # # Configure user for the next step
-            - name: Configure Git user
-              run: |
-                git config user.email "actions@github.com"
-                git config user.name "GitHub Actions"
+            # # # Configure user for the next step
+            # - name: Configure Git user
+            #   run: |
+            #     git config user.email "actions@github.com"
+            #     git config user.name "GitHub Actions"
 
             # Replace the snapshot version with a release candidate version.
             # Deploy the jar to GitHub registry
@@ -79,10 +79,10 @@ jobs:
               id: release
               run: mvn -B release:prepare
 
-            - name: Perform release
-              run: mvn -B release:perform
-              env:
-                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            # - name: Perform release
+            #   run: mvn -B release:perform
+            #   env:
+            #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
             - name: Publish package
               run: mvn -B release:perform
