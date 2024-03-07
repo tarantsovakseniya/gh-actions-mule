@@ -65,11 +65,11 @@ jobs:
             #     -Dcloudhub.workers=${{ env.CLOUDHUB_WORKERS}} \
             #     -Dcloudhub.region=${{ env.CLOUDHUB_REGION}} \
 
-            # # # Configure user for the next step
-            # - name: Configure Git user
-            #   run: |
-            #     git config user.email "actions@github.com"
-            #     git config user.name "GitHub Actions"
+            # # Configure user for the next step
+            - name: Configure Git user
+              run: |
+                git config user.email "actions@github.com"
+                git config user.name "GitHub Actions"
 
             # Replace the snapshot version with a release candidate version.
             # Deploy the jar to GitHub registry
