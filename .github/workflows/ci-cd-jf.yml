@@ -62,4 +62,4 @@ jobs:
               # Collect VCS details from git and add them to the build
               # Publish build info
               run: |
-                jf rt mvn clean install -f pom.xml -build-name=${{ steps.build-data.outputs.JFROG_CLI_BUILD_NAME }} --build-number=${{ steps.build-data.outputs.JFROG_CLI_BUILD_NUMBER }}
+                jf mvn clean install -f pom.xml -build-name=${{ steps.build-data.outputs.JFROG_CLI_BUILD_NAME }} --build-number=${{ steps.build-data.outputs.JFROG_CLI_BUILD_NUMBER }}
