@@ -64,4 +64,6 @@ jobs:
               # Collect environment variables for the build
               # Collect VCS details from git and add them to the build
               # Publish build info
-              run: ls
+              run: |
+                cd target
+                ls
