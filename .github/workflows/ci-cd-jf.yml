@@ -39,6 +39,8 @@ jobs:
                 #Setting check-latest to true has performance implications as downloading versions of Java is slower than using cached versions.
                 check-latest: false
 
+            - name: Build
+              run: mvn clean install -DskipTests
             - name: Set up Jfrog
               uses: jfrog/setup-jfrog-cli@v4
               env:
@@ -53,11 +55,11 @@ jobs:
                 jf rt ping
                 jf --version
             # Extract build id from input
-            - name: Extract Build Id
-              id: build-data
-              run: |
-                echo 'JFROG_CLI_BUILD_NAME=${{ github.event.inputs.buildName }} >> $GITHUB_OUTPUT'
-                echo 'JFROG_CLI_BUILD_NUMBER=${{ github.event.inputs.buildNumber }} >> $GITHUB_OUTPUT'
+            # - name: Extract Build Id
+            #   id: build-data
+            #   run: |
+            #     echo 'JFROG_CLI_BUILD_NAME=${{ github.event.inputs.buildName }} >> $GITHUB_OUTPUT'
+            #     echo 'JFROG_CLI_BUILD_NUMBER=${{ github.event.inputs.buildNumber }} >> $GITHUB_OUTPUT'
             - name: Run JFrog CLI
               # Collect environment variables for the build
               # Collect VCS details from git and add them to the build
