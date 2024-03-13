@@ -1,4 +1,4 @@
-name: ci_cd_pipeline
+name: ci_cd_pipeline_jfrog
 on: 
     workflow_dispatch:
         inputs:
@@ -45,7 +45,7 @@ jobs:
                 JF_URL: ${{ secrets.JF_URL }}
 
                 # Basic authentication credentials
-                JF_USER: ${{ secrets.JF_USERNAME  }}
+                JF_USER: ${{ secrets.JF_USER  }}
                 JF_PASSWORD: ${{ secrets.JF_PASSWORD }}
             - name: JFrog Ping
               run: |
