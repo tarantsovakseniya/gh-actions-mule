@@ -38,9 +38,7 @@ jobs:
                 #If the locally cached version is not the most up-to-date, the latest version of Java will be downloaded.
                 #Setting check-latest to true has performance implications as downloading versions of Java is slower than using cached versions.
                 check-latest: false
-            - uses: s4u/maven-settings-action@v2.6.0
-              with:
-                servers: '[{"id": "mule-connected-app", "username": "${{ inputs.GITHUB_ENVIRONMENT}}", "password": "${{ inputs.GITHUB_ENVIRONMENT }}"}]'
+
             - name: Set up Jfrog
               uses: jfrog/setup-jfrog-cli@v4
               env:
