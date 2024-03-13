@@ -62,5 +62,4 @@ jobs:
               # Collect environment variables for the build
               # Collect VCS details from git and add them to the build
               # Publish build info
-              run: |
-                jf rt upload -build-name=${{ steps.build-data.outputs.JFROG_CLI_BUILD_NAME }} --build-number=${{ steps.build-data.outputs.JFROG_CLI_BUILD_NUMBER }}
+              run: ls
