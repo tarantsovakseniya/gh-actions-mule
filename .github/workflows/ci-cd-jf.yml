@@ -42,7 +42,7 @@ jobs:
               run: |
                 cat /home/runner/.m2/settings.xml
             - name: Build
-              run: mvn clean install -DskipTests
+              run: mvn clean package -DskipTests
             - name: Set up Jfrog
               uses: jfrog/setup-jfrog-cli@v4
               env:
@@ -73,3 +73,6 @@ jobs:
               run: |
                 cd target
                 ls
+            - name: Upload
+              run: |
+                  jf rt u "target/*.jar" mule-k-libs-snapshot-local/com/mycompany/ --server-id=central-snapshots
