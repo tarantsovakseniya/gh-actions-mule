@@ -75,24 +75,28 @@ jobs:
             - name: Upload
               run: |
                 jf mvn-config
+            - name: Install benchmark
+              run: |
+                jf plugin install benchmark
+
               # jf c s
               # jf rt c add hello
 
               # jf config add snapshot --artifactory-url 'https://mule777.jfrog.io/artifactory/mule-k-libs-snapshot-local' --user ${{ secrets.JF_USER  }} --password ${{ secrets.JF_PASSWORD }}
               # jf rt u target/gh-actions-mule-1.0.6-SNAPSHOT-mule-application.jar mule-k-libs-snapshot-local/com/mycompany/
             
-            - name: Failure check
-              run: |
-                echo "JFROG_BUILD_STATUS=FAIL" >> $GITHUB_ENV
-              if: failure()
-            # Collect and store environment variables in the build-info
-            # Collect and store VCS details in the build-info
-            # Publish the build-info to Artifactory
-            # Scan the published build-info with Xray
-            - name: Publish build
-              run: |
-                jfrog rt bce
-                jfrog rt bag
-                jfrog rt bp
-                jfrog rt bs
-              if: always()
+            # - name: Failure check
+            #   run: |
+            #     echo "JFROG_BUILD_STATUS=FAIL" >> $GITHUB_ENV
+            #   if: failure()
+            # # Collect and store environment variables in the build-info
+            # # Collect and store VCS details in the build-info
+            # # Publish the build-info to Artifactory
+            # # Scan the published build-info with Xray
+            # - name: Publish build
+            #   run: |
+            #     jfrog rt bce
+            #     jfrog rt bag
+            #     jfrog rt bp
+            #     jfrog rt bs
+            #   if: always()
