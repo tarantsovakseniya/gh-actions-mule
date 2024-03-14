@@ -77,7 +77,7 @@ jobs:
                 jf mvn-config --repo-deploy-releases mule-k-libs-release-local --repo-deploy-snapshots mule-k-libs-snapshot-local
             - name: Upload artifact
               run: |
-                jf mvn clean install -DcreateChecksum=true
+                jf mvn clean install
               # jf c s
               # jf rt c add hello
 
