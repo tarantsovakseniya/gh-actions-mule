@@ -4,7 +4,7 @@
 
 	<groupId>com.mycompany</groupId>
 	<artifactId>gh-actions-mule</artifactId>
-	<version>1.0.5</version>
+	<version>1.0.6-SNAPSHOT</version>
 	<packaging>mule-application</packaging>
 
 	<name>${project.artifactId}</name>
@@ -13,7 +13,7 @@
 		<connection>scm:git:https://github.com/tarantsovakseniya/gh-actions-mule.git</connection>
 		<url>scm:git:https://github.com/tarantsovakseniya/gh-actions-mule.git</url>
     	<developerConnection>scm:git:https://github.com/tarantsovakseniya/gh-actions-mule.git</developerConnection>
-    	<tag>gh-actions-mule-1.0.5</tag>
+    	<tag>gh-actions-mule-1.0.2</tag>
     </scm>	
 
 	<properties>
