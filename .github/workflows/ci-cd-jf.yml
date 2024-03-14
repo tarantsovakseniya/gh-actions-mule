@@ -75,7 +75,7 @@ jobs:
                 ls
             - name: Upload
               run: |
-                jf maven-config
+                jf mvn-config
                 jf mvn --repo-resolve-releases mule-k-libs-release-local --repo-resolve-snapshots mule-k-libs-snapshot-local --repo-deploy-snapshots mule-k-libs-snapshot-local--repo-deploy-releases mule-k-libs-release-local
                 jf mvn install
               # jf rt u target/gh-actions-mule-1.0.6-SNAPSHOT-mule-application.jar mule-k-libs-snapshot-local/com/mycompany/
