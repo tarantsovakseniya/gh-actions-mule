@@ -38,7 +38,9 @@ jobs:
                 #If the locally cached version is not the most up-to-date, the latest version of Java will be downloaded.
                 #Setting check-latest to true has performance implications as downloading versions of Java is slower than using cached versions.
                 check-latest: false
-
+            - name: JOB settings DETAILS
+              run: |
+                cat /home/runner/.m2/settings.xml
             - name: Build
               run: mvn clean install -DskipTests
             - name: Set up Jfrog
@@ -50,6 +52,11 @@ jobs:
                 # Basic authentication credentials
                 JF_USER: ${{ secrets.JF_USER  }}
                 JF_PASSWORD: ${{ secrets.JF_PASSWORD }}
+            - name: Add snapshot server
+            - name: Showing the Configured Servers
+              run: |
+                  jf c s 
+                  
             - name: JFrog Ping
               run: |
                 jf rt ping
