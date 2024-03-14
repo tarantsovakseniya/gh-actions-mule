@@ -72,18 +72,12 @@ jobs:
               run: |
                 cd target
                 ls
-            - name: Upload
+            - name: Maven Config
               run: |
-                jf mvn-config
-            - name: Install benchmark
+                jf mvn-config --repo-deploy-releases mule-k-libs-release-local --repo-deploy-snapshots mule-k-libs-snapshot-local
+            - name: Upload artifact
               run: |
-                jf plugin install benchmark
-            - name: Configure Artifactory credentials
-              run: |
-                jf benchmark up --repo_name mule-k-libs-snapshot-local 
-            - name: Showing the Configured Servers
-              run: |
-                jf c s 
+                jf mvn clean install
               # jf c s
               # jf rt c add hello
 
