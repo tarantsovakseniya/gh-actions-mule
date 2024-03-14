@@ -55,7 +55,7 @@ jobs:
             - name: Showing the Configured Servers
               run: |
                   jf c s 
-                  
+                  jf rt s
             - name: JFrog Ping
               run: |
                 jf rt ping
