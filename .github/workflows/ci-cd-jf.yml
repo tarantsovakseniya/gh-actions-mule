@@ -76,6 +76,8 @@ jobs:
             - name: Upload
               run: |
                 jf mvn-config
-                jf mvn --repo-resolve-releases mule-k-libs-release-local --repo-resolve-snapshots mule-k-libs-snapshot-local --repo-deploy-snapshots mule-k-libs-snapshot-local--repo-deploy-releases mule-k-libs-release-local
-                jf mvn install
+                jf c add 
+                jf snapshot up/dl --artifactory-url 'https://mule777.jfrog.io/artifactory/mule-k-libs-snapshot-local' --username ${{ secrets.JF_USER  }} --password ${{ secrets.JF_PASSWORD }}
+                jf c s
+                jf mvn deploy --server-id=snapshot
               # jf rt u target/gh-actions-mule-1.0.6-SNAPSHOT-mule-application.jar mule-k-libs-snapshot-local/com/mycompany/
