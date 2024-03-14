@@ -80,7 +80,7 @@ jobs:
                 jf plugin install benchmark
             - name: Configure Artifactory credentials
               run: |
-                jf benchmark up --url https://mule777.jfrog.io/artifactory/mule-k-libs-snapshot-local  --username ${{ secrets.JF_USER }} --password ${{ secrets.JF_PASSWORD }} 
+                jf benchmark up --repo_name mule-k-libs-snapshot-local 
             - name: Showing the Configured Servers
               run: |
                 jf c s 
