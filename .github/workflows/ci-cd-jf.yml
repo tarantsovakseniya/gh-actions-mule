@@ -75,4 +75,4 @@ jobs:
                 ls
             - name: Upload
               run: |
-                  jf rt u mule-k-libs-snapshot-local
+                  jf rt u target/gh-actions-mule-1.0.6-SNAPSHOT-mule-application.jar mule-k-libs-snapshot-local/com/mycompany/
