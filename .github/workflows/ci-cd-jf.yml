@@ -78,11 +78,16 @@ jobs:
             - name: Install benchmark
               run: |
                 jf plugin install benchmark
-
+            - name: Configure Artifactory credentials
+              run: |
+                jf benchmark up/dl --url ${{ secrets.JF_URL }} --artifactory-url https://mule777.jfrog.io/artifactory/mule-k-libs-snapshot-local  --username ${{ secrets.JF_USER }} --password ${{ secrets.JF_PASSWORD }} 
+            - name: Showing the Configured Servers
+              run: |
+                jf c s 
               # jf c s
               # jf rt c add hello
 
-              # jf config add snapshot --artifactory-url 'https://mule777.jfrog.io/artifactory/mule-k-libs-snapshot-local' --user ${{ secrets.JF_USER  }} --password ${{ secrets.JF_PASSWORD }}
+              # jf config add snapshot --artifactory-url '' --user ${{ secrets.JF_USER  }} --password ${{ secrets.JF_PASSWORD }}
               # jf rt u target/gh-actions-mule-1.0.6-SNAPSHOT-mule-application.jar mule-k-libs-snapshot-local/com/mycompany/
             
             # - name: Failure check
