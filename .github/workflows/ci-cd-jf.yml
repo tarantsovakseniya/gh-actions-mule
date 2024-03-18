@@ -44,6 +44,7 @@ jobs:
             - name: Build
               run: mvn clean package -DskipTests
             - name: Print pom version and project name
+              id: maven
               run: |
                 mvn help:evaluate -Dexpression=project.version -q -DforceStdout
                 mvn help:evaluate -Dexpression=project.name -q -DforceStdout
@@ -56,7 +57,6 @@ jobs:
                 # Basic authentication credentials
                 JF_USER: ${{ secrets.JF_USER  }}
                 JF_PASSWORD: ${{ secrets.JF_PASSWORD }}
-                JF_CLI_TRANSITIVE_DOWNLOAD_EXPERIMENTAL: true
             - name: Showing the Configured Servers
               run: |
                   jf c s 
@@ -64,12 +64,12 @@ jobs:
               run: |
                 jf rt ping
                 jf --version
-            # Extract build id from input
-            # - name: Extract Build Id
-            #   id: build-data
-            #   run: |
-            #     echo 'JFROG_CLI_BUILD_NAME=${{ github.event.inputs.buildName }} >> $GITHUB_OUTPUT'
-            #     echo 'JFROG_CLI_BUILD_NUMBER=${{ github.event.inputs.buildNumber }} >> $GITHUB_OUTPUT'
+          # Extract build id from input
+            - name: Extract Build Id
+              run: |
+                echo 'JFROG_CLI_TRANSITIVE_DOWNLOAD_EXPERIMENTAL=true' >> $GITHUB_ENV'
+        # echo 'JFROG_CLI_BUILD_NAME=${{ github.event.inputs.buildName }} >> $GITHUB_ENV'
+        # echo 'JFROG_CLI_BUILD_NUMBER=${{ github.event.inputs.buildNumber }} >> $GITHUB_ENV'
             - name: Run JFrog CLI
               # Collect environment variables for the build
               # Collect VCS details from git and add them to the build
