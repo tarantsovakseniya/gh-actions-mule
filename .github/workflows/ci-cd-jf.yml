@@ -88,7 +88,7 @@ jobs:
             - name: Download artifact
               run: 
                 mkdir -p artifact
-                jf rt dl --build ${{ env.JFROG_CLI_BUILD_NAME }}/${{ env.JFROG_CLI_BUILD_NUMBER }} /artifact
+                jf rt dl --build ${{ env.JFROG_CLI_BUILD_NAME }}/${{ env.JFROG_CLI_BUILD_NUMBER }} "*" /artifact
             - name: Check folder
               run: 
                 ls
