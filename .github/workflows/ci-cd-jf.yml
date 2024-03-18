@@ -94,6 +94,8 @@ jobs:
             - name: Check folder
               run: |
                 ls
+            - name: Artifact folder
+              run: |
                 cd artifact
                 ls
               # jf c s
