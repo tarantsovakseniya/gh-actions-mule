@@ -87,9 +87,11 @@ jobs:
                 jf mvn clean install
             - name: Download artifact
               run: 
-                jf rt dl --build ${{ env.JFROG_CLI_BUILD_NAME }}/${{ env.JFROG_CLI_BUILD_NUMBER }} "*" artifact/
+                # mkdir -p artifact
+                jf rt dl --build ${{ env.JFROG_CLI_BUILD_NAME }}/${{ env.JFROG_CLI_BUILD_NUMBER }}
             - name: Check folder
-              run: ls
+              run: 
+                ls
               # jf c s
               # jf rt c add hello
 
