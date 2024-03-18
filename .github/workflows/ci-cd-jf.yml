@@ -17,6 +17,7 @@ jobs:
             CLOUDHUB_REGION: "us-east-2"
             CLOUDHUB_ID: ${{ secrets.CLOUDHUB_ID }}
             CLOUDHUB_SECRET: ${{ secrets.CLOUDHUB_SECRET }}
+            JFROG_CLI_TRANSITIVE_DOWNLOAD_EXPERIMENTAL: true
         permissions:
             packages: write
             contents: write
@@ -66,8 +67,7 @@ jobs:
                 jf --version
           # Extract build id from input
             - name: Extract Build Id
-              run: |
-                echo 'JFROG_CLI_TRANSITIVE_DOWNLOAD_EXPERIMENTAL=true' >> '$GITHUB_ENV'
+              run: echo "JFROG_CLI_TRANSITIVE_DOWNLOAD_EXPERIMENTAL=true" >> '$GITHUB_ENV'
         # echo 'JFROG_CLI_BUILD_NAME=${{ github.event.inputs.buildName }} >> $GITHUB_ENV'
         # echo 'JFROG_CLI_BUILD_NUMBER=${{ github.event.inputs.buildNumber }} >> $GITHUB_ENV'
             - name: Run JFrog CLI
