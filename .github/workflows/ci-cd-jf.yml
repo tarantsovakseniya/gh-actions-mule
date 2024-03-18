@@ -92,7 +92,7 @@ jobs:
               run: 
                 jf rt dl --build ${{ env.JFROG_CLI_BUILD_NAME }}/${{ env.JFROG_CLI_BUILD_NUMBER }} "*" /artifact
             - name: Check folder
-              run: 
+              run: |
                 ls
                 cd artifact
                 ls
