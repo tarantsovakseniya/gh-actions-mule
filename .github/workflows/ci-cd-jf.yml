@@ -43,6 +43,10 @@ jobs:
                 cat /home/runner/.m2/settings.xml
             - name: Build
               run: mvn clean package -DskipTests
+            - name: Print pom version and project name
+              run: |
+                mvn help:evaluate -Dexpression=project.version -q -DforceStdout
+                mvn help:evaluate -Dexpression=project.name -q -DforceStdout
             - name: Set up Jfrog
               uses: jfrog/setup-jfrog-cli@v4
               env:
@@ -72,10 +76,6 @@ jobs:
               run: |
                 cd target
                 ls
-            - name: Get pom version and project name
-              run: |
-                echo mvn help:evaluate -Dexpression=project.version -q -DforceStdout
-                echo mvn help:evaluate -Dexpression=project.name -q -DforceStdout
             - name: Maven Config
               run: |
                 jf mvn-config --repo-deploy-releases mule-k-libs-release-local --repo-deploy-snapshots mule-k-libs-snapshot-local
