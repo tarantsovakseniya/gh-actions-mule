@@ -56,6 +56,7 @@ jobs:
                 # Basic authentication credentials
                 JF_USER: ${{ secrets.JF_USER  }}
                 JF_PASSWORD: ${{ secrets.JF_PASSWORD }}
+                JFROG_CLI_TRANSITIVE_DOWNLOAD_EXPERIMENTAL: true
             - name: Showing the Configured Servers
               run: |
                   jf c s 
@@ -85,9 +86,10 @@ jobs:
             - name: Upload artifact
               run: |
                 jf mvn clean install
+            - name: Add folder
+              run: mkdir -p artifact
             - name: Download artifact
               run: 
-                mkdir -p artifact
                 jf rt dl --build ${{ env.JFROG_CLI_BUILD_NAME }}/${{ env.JFROG_CLI_BUILD_NUMBER }} "*" /artifact
             - name: Check folder
               run: 
